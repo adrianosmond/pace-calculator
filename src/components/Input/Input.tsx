@@ -2,13 +2,14 @@ import {
   ComponentProps,
   createMemo,
   createSignal,
+  JSX,
   onCleanup,
   onMount,
 } from 'solid-js';
 
 type InputProps = {
-  icon?: string;
-  suffix?: string;
+  icon?: JSX.Element;
+  suffix?: JSX.Element;
 } & ComponentProps<'input'>;
 
 const Input = ({
@@ -61,7 +62,7 @@ const Input = ({
         type={type}
         {...rest}
         class={[
-          'w-full border-0 border-b-2 rounded-none border-yellow-400 p-1 pt-0 bg-transparent outline-none appearance-none text-right',
+          'w-full border-0 border-b-2 rounded-none border-current p-1 pt-0 bg-transparent outline-none appearance-none text-right',
           classes,
         ].join(' ')}
         style={{
