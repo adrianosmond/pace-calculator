@@ -28,9 +28,13 @@ const App: Component = () => {
 
     const pacePerKm = timeInSecs / 60 / distance();
 
-    const minsPerKm = Math.floor(pacePerKm);
-    const secsPerKm = Math.round((pacePerKm - minsPerKm) * 60);
-    return `${minsPerKm}:${secsPerKm.toString().padStart(2, '0')} min/km`;
+    let minsPerKm = Math.floor(pacePerKm);
+    let secsPerKm = Math.round((pacePerKm - minsPerKm) * 60);
+    if (secsPerKm === 60) {
+      secsPerKm = 0;
+      minsPerKm += 1;
+    }
+    return `${minsPerKm}:${secsPerKm.toString().padStart(2, '0')} / km`;
   });
 
   return (
