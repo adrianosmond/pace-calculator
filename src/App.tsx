@@ -7,8 +7,11 @@ import { calculatePace, shiftTimeColons } from './utils';
 type InputHandler = JSX.EventHandlerUnion<HTMLInputElement, InputEvent>;
 
 const [distance, setDistance] = createSignal(5.0);
-const updateDistance: InputHandler = (e) =>
-  setDistance(parseFloat(e.currentTarget.value));
+const updateDistance: InputHandler = (e) => {
+  if (!Number.isNaN(parseFloat(e.currentTarget.value))) {
+    setDistance(parseFloat(e.currentTarget.value));
+  }
+};
 
 const [time, setTime] = createSignal('25:00');
 const updateTime: InputHandler = (e) => {
@@ -46,7 +49,7 @@ const App: Component = () => {
             icon={<TimeIcon />}
           />
         </div>
-        <div class="font-bold text-lg">{pace}</div>
+        <div class="font-bold text-lg">{pace()}</div>
       </div>
     </div>
   );
